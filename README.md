@@ -9,7 +9,7 @@ Beginning in Aseprite `1.2.10`, users were able to begin using Lua to write thei
 Usage :orange_book:
 ------
 
-To make use of these scripts, first clone the repo or [download the zip](https:/github.com/iiviigames/Asepritely/archive/Asepritely.zip). Open this folder in an explorer window. Then, *open Aseprite, and peform the following*: <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Open Scripts Folder</kbd>. Another explorer window should open up, and this is where you can **copy any of the scripts you want from the repo into the Aseprite scripts folder**!
+To make use of these scripts, first clone the repo or [download the zip](https://github.com/iiviigames/Asepritely/archive/master.zip). Open this folder in an explorer window. Then, *open Aseprite, and peform the following*: <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Open Scripts Folder</kbd>. Another explorer window should open up, and this is where you can **copy any of the scripts you want from the repo into the Aseprite scripts folder**!
 
 Now that they're in the right place, in order to use them, you can either:
 
