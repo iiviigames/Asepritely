@@ -1,6 +1,8 @@
 # Asepritely :art:
 
-**Asepritely** is a library of helpful [Lua](https://lua.org) scripts I've written for use in the pixel art editor, [Aseprite](https://aseprite.org).
+**Asepritely** is a library of helpful [Lua](https://lua.org) scripts I've written for use in the pixel art editor, [Aseprite](https://aseprite.org). 
+
+> **UPDATE**: I've also started including some [**palettes**](#Extensions) that I use myself!
 
 
 Beginning in Aseprite `1.2.10`, users were able to begin using Lua to write their own code extensions to assist in their spritely endeavors. I've written _many_ myself, but, they were originally just for my own use. I've seen that maybe one or two were worthy of sharing, so, as I clean up their code, I will add them to this repository for **you, the artist** to consume at their leisure.
@@ -31,6 +33,27 @@ The Scripts :memo:
 
 This script creates a little toolbar that enables you to quickly view the **RGB** values of your **current foreground color**. _Very helpful when getting color values for use in other software!_
 
+Palettes :gift: <a name="Extensions"></a>
+----------------------------------
+
+I've added two palette files into an extension for anyone wanting to add to their palette collection!
+
+They are the [Secret Pico-8](https://pico-8.fandom.com/wiki/User_blog:Iiviigames/Piccult_Colors!) palette, and the [Flat UI](https://flatuicolors.com/palette/defo) palette!
+
+
+> Three Ways to get the palettes:
+
++ :arrow_forward: [Click here to download!]()
+
++ :arrow_forward: Clone this repo and then go into the `extensions` folder, where you'll find it. 
+
++ :arrow_forward: Click on the`extensions` folder up above, then click `iivii-palettes.aseprite-extension`, and click the button that says **Download**.
+
+---
+
+Here's a little gif showing how to import it into Aseprite!
+
+![Load Palettes](img/PaletteExtension.gif)
 
 Other Useful Resources :see_no_evil:
 ------------------------
