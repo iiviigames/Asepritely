@@ -1,6 +1,6 @@
 # Asepritely :art:
 
-**Asepritely** is a library of helpful [Lua](https://lua.org) scripts I've written for use in the pixel art editor, [Aseprite](https://aseprite.org). 
+**Asepritely** is a library of helpful [Lua](https://lua.org) scripts and extensions I've written for use in the pixel art editor, [Aseprite](https://aseprite.org). 
 
 > **UPDATE**: I've also started including some [**palettes**](#Extensions) that I use myself!
 
@@ -43,7 +43,7 @@ They are the [Secret Pico-8](https://pico-8.fandom.com/wiki/User_blog:Iiviigames
 
 > Three Ways to get the palettes:
 
-+ :arrow_forward: [Click here to download!]()
++ :arrow_forward: [Click here to download!](https://github.com/iiviigames/Asepritely/raw/master/extensions/iivii-palettes.aseprite-extension)
 
 + :arrow_forward: Clone this repo and then go into the `extensions` folder, where you'll find it. 
 
