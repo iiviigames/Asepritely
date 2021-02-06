@@ -22,6 +22,17 @@ The scripts will now be accesible by going back to the <kbd>File</kbd> `->` <kbd
 
 > TIP: **You can even assign them to a keyboard shortcut through Aseprite's built-in keymap definition tool!**
 
+
+### Setting Scripts to Keyboard Shortcuts
+
+This is useful for some scripts, like `Export PNG on Save.lua`, and less useful for others. If you've never bound your scripts to keyboard shortcuts before, here's a quick how to. Open Aseprite and then:
+
++ Clicking <kbd>Edit</kbd> `->` <kbd>Keyboard Shortcuts</kbd>
++ In the window that opens, you'll be in the **Menu** section, and just toward the bottom, you'll see any and all scripts you have in your scripts folder listed.
++ Choose the one you want to assign a keyboard shortcut, and set it as you see fit!
+
+> **EXAMPLE**: For `Export PNG on Save.lua`, _I recommend: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>_
+
 The Scripts :memo:
 ------------
 
@@ -32,6 +43,12 @@ The Scripts :memo:
 ![Usage](img/ForegroundToolbar.gif)
 
 This script creates a little toolbar that enables you to quickly view the **RGB** values of your **current foreground color**. _Very helpful when getting color values for use in other software!_
+
+
+#### Export PNG on Save
+
+When run, this script simply _saves your current sprite_ and **saves a `.png` copy at the same time**! The file is output in the same directory you are working in. If you don't like the popup it gives when complete, open the script up in a text editor and set the value `POPUP` to `false`.
+
 
 Palettes :gift: <a name="Extensions"></a>
 ----------------------------------
