@@ -15,8 +15,9 @@ To make use of these scripts, first clone the repo or [download the zip](https:/
 
 Now that they're in the right place, in order to use them, you can either:
 
-+ Restart Aseprite, _or_,
-+ <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Rescan Scripts Folder</kbd> (**Faster, better option!**)
+
++ <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Rescan Scripts Folder</kbd> (**Faster, better option!**), _or..._
++ Restart Aseprite
 
 The scripts will now be accesible by going back to the <kbd>File</kbd> `->` <kbd>Scripts</kbd> dropdown! 
 
@@ -44,10 +45,26 @@ The Scripts :memo:
 
 This script creates a little toolbar that enables you to quickly view the **RGB** values of your **current foreground color**. _Very helpful when getting color values for use in other software!_
 
+---
 
 #### Export PNG on Save
 
+I made this [as a request from someone on the forums](https://community.aseprite.org/t/auto-export-option-when-saving-an-aseprite-file/8047/4)!
+
 When run, this script simply _saves your current sprite_ and **saves a `.png` copy at the same time**! The file is output in the same directory you are working in. If you don't like the popup it gives when complete, open the script up in a text editor and set the value `POPUP` to `false`.
+
+---
+
+
+#### Save Selection to Layer
+
+Aseprite already has a feature called "Save selection to new sprite". I often find that, while working on something, I need to **copy** or **cut** just a portion of a layer into a new one so I can divide things up more easily. 
+
+Well, that's exactly what this does! It's only version `1.0`, so it's _barely_ functional. I plan on adding options to select between copy or paste (_right now, it's just copy_), and the ability to do have this work on all cels in a layer. Right now, it just works _on the current active layer and cel_!. 
+
+Here's a little clip of it in action.
+
+![Selection to Layer](img/SelectionToLayer.gif)
 
 
 Palettes :gift: <a name="Extensions"></a>

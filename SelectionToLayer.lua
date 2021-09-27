@@ -21,17 +21,20 @@
 USESLIDER = false
 USEDROPDOWN = true
 
-	-- Get active layer
-		local layer = app.activeLayer
-		-- Get layer data
-		local data = layer.data
-		-- Get active sprite
-		local spr = app.activeSprite
+-- Get active layer
+local layer = app.activeLayer
+-- Get layer data
+local data = layer.data
+-- Get active sprite
+local spr = app.activeSprite
 
 --	HELPER FUNCTIONS
 --	==========================================================================
+	
+
 	--	Shows the type of an item
 	function st(v)
+
 		print(type(v))
 	end
 
@@ -100,27 +103,27 @@ USEDROPDOWN = true
 		return str:lpad('0', len)
 	end
 
----@func  ptr(t)
----@arg   {tbl}   t   	table
----@arg   {num}   spc		number of spaces to add to the front of an item
----@desc  Prints tables recursively.
----				Use this if your table contains many tables of its own.
----				Infinite looping is a potential, be careful
-function ptrw(t,spc)
-	local ws = ''
-	spc = type(spc) == 'number' and spc or 0
-	ws = srpt(' ', spc)
-	for k,v in pairs(t) do
-		if type(k) == 'table' then
-			print(ws.."TABLE: "..tostring(k))
-			spc=spc+1
-			ptr(v,spc)
-			spc=spc-1
-		else
-			print(ws..tostring(k)..": "..tostring(v))
+	---@func  ptr(t)
+	---@arg   {tbl}   t   	table
+	---@arg   {num}   spc		number of spaces to add to the front of an item
+	---@desc  Prints tables recursively.
+	---				Use this if your table contains many tables of its own.
+	---				Infinite looping is a potential, be careful
+	function ptrw(t,spc)
+		local ws = ''
+		spc = type(spc) == 'number' and spc or 0
+		ws = srpt(' ', spc)
+		for k,v in pairs(t) do
+			if type(k) == 'table' then
+				print(ws.."TABLE: "..tostring(k))
+				spc=spc+1
+				ptr(v,spc)
+				spc=spc-1
+			else
+				print(ws..tostring(k)..": "..tostring(v))
+			end
 		end
 	end
-end
 	
 	---@func	srpt(c, n)
 	---@arg 	{str}	c		character or string
@@ -159,6 +162,29 @@ end
 		return
 	end
 
+	function print_test()
+		if type(layer) == 'table' then
+			for k,v in pairs(popup) do
+				if type(v)  == 'table' then 
+					print("Inner table @ "..tostring(k))
+					pt(v)
+					print("=======================\n")
+				else
+					print(tostring(k)..": "..tostring(v))
+				end
+			end
+		else
+			local pre  = "TYPE:"
+			local len = #pre
+			local spc = srpt(" ", len)
+			local mid  = type(v).." | "
+			local com = pre..spc..mid
+			local post = tostring(k)..": "..tostring(v)
+			local final = com..post
+			print(final)
+		end
+	end
+
 
 --	UTILITY FUNCTIONS
 --	==========================================================================
@@ -186,7 +212,7 @@ end
 	function layer_names()
 		local names = {}
 		local len = layer_count()
-		print("Layer Length: "..tostring(len))
+
 		len = type(len) == 'number' and len or 2
 		for i=1, len do
 			local cur = app.site
@@ -200,8 +226,8 @@ end
 --	CREATE THE DIALOG
 --	==========================================================================
 
-	-- local window = Dialog("Layer Name")
-	popup = Dialog()
+s
+	popup = Dialog("Selection to Layer")
 	popup:entry{
 		id="newname",
 		label="New Layer:",
@@ -209,7 +235,7 @@ end
 		focus=true
 	}
 	local size = popup.bounds
-	local w,h = 170,100
+	local w,h = 210,100
 
 	popup.bounds = Rectangle(1080/2 - w, size.y+h,w,h)
 
@@ -246,8 +272,8 @@ end
 		focus=false,
 		onclick=function()
 			-- newLayer(popup.creator.text)
-			app.command.TogglePreview()
-			pt(popup.data)
+			-- app.command.TogglePreview()
+			-- pt(popup.data)
 		end
 	}		
 
@@ -262,114 +288,37 @@ end
 			-- local sel = spr.selection
 			-- app.command.NewLayer()
 			-- app.command.Paste()
+			-- app.transaction(
+				-- function()
 			app.command.Copy()
 			app.command.NewLayer({viacopy=true})	
 			app.command.Paste()
 			app.activeLayer.name = popup.data.newname
+			  -- end
+			-- )
 		end
 	}
 
 
---[[-- Add GO button
-popup:button{
-	id="go",
-	text="Go!",
-	onclick=function()
-		local data = popup.data
 
-		local x = data.x_offset
-		local y = data.y_offset
-		local xdir = tonumber(x) < 0 and "left" or "right"
-		local ydir = tonumber(y) < 0 and "up" or "down"
-		-- print(xdir..", "..ydir)
-		x = x < 0 and x * -1 or x
-		y = y < 0 and y * -1 or y
-		-- print(x..", "..y)
-		-- print("X: "..tostring(x)..", Y: "..tostring(y))
-
-		--	Shorthand for Scroll
-		local scroll = app.command.Scroll
-		-- Move to 0,0
-
-
-		app.command.Scroll{direction=xdir,units="zoomed-pixel", quantity=x}
-		app.command.Scroll{direction=ydir,units="zoomed-pixel", quantity=y}
-
-	end
-}--]]
-
---	Create the quit button
-popup:button{
-	text="Cancel",
-	onclick=function()
-		popup:close()
-	end
-}
-
--- Start Script
--- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-	print(layer)
-
-	popup:show{wait=false}
-	-- ptp(_G, "function", 'table')
-	-- ptrw(app)
-
-	-- print(layer)
-	-- pt(layer)
-	-- print(data)
-
-	function print_test()
-		if type(layer) == 'table' then
-			for k,v in pairs(popup) do
-				if type(v)  == 'table' then 
-					print("Inner table @ "..tostring(k))
-					pt(v)
-					print("=======================\n")
-				else
-					print(tostring(k)..": "..tostring(v))
-				end
-			end
-		else
-			local pre  = "TYPE:"
-			local len = #pre
-			local spc = srpt(" ", len)
-			local mid  = type(v).." | "
-			local com = pre..spc..mid
-			local post = tostring(k)..": "..tostring(v)
-			local final = com..post
-			print(final)
+	--	Create the quit button
+	popup:button{
+		text="Cancel",
+		onclick=function()
+			popup:close()
 		end
+	}
 
-end
+
+
+-- THE SHOW MUST GO ON!
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	popup:show{wait=false}
+
+
 
 --	WYLD STALYNS
 --	==========================================================================
--- Pasadena High School Football Rules!
+-- San Dimas High School Football Rules!
 -- HistoryTest()
 
-
---	NOTES
---	==========================================================================
--- print(app.activeSprite.position)
--- Add entry for x field
--- window:number{
--- 	id="x_offset",
--- 	label="X Offset: ",
--- 	text="0",
--- 	decimals=0
--- }
-
---[[
-local d = Dialog("Pack Similar Tiles")
-d:number{ id="tile_w", label="Tile Width:", text="16", focus=true }
- :number{ id="tile_h", label="Tile Height:", text="16" }
- :number{ id="sheet_w", label="Sprite Sheet Width:", text="256" }
- :button{ id="ok", text="&OK", focus=true }
- :button{ text="&Cancel" }
- :show()--]]
