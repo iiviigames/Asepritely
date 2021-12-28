@@ -8,7 +8,7 @@
 Beginning in Aseprite `1.2.10`, users were able to begin using Lua to write their own code extensions to assist in their spritely endeavors. I've written _many_ myself, but, they were originally just for my own use. I've seen that maybe one or two were worthy of sharing, so, as I clean up their code, I will add them to this repository for **you, the artist** to consume at their leisure.
 The Scripts :memo:
 
-------------
+***
 
 > As time goes on, I will add entries to this section to synopsize any new scripts, and their functionality.
 
