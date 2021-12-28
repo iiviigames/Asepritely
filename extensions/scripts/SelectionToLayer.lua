@@ -20,6 +20,9 @@
 
 USESLIDER = false
 USEDROPDOWN = true
+CUTCONTENT = false
+SELECTLOC = 'Above'
+CLOSECHK = false
 
 -- Get active layer
 local layer = app.activeLayer
@@ -226,18 +229,22 @@ local spr = app.activeSprite
 --	CREATE THE DIALOG
 --	==========================================================================
 
-s
+
 	popup = Dialog("Selection to Layer")
+	
+	local size = popup.bounds
+	local w,h = 210,100
+	-- popup.bounds = Rectangle(1080/2 - w, size.y+h,w+h-h/2,h)
+	popup.bounds = Rectangle(50, 50,w+h-h/2,h)
+	
 	popup:entry{
 		id="newname",
 		label="New Layer:",
 		text="Layer",
 		focus=true
 	}
-	local size = popup.bounds
-	local w,h = 210,100
 
-	popup.bounds = Rectangle(1080/2 - w, size.y+h,w,h)
+
 
 	-- Create a slider
 	if USESLIDER then
@@ -250,13 +257,26 @@ s
 
 	-- Create a Dropdown
 	if USEDROPDOWN then
-		local layercount = layer_count()
+		-- CHANGING
+		--[[local layercount = layer_count()
 		popup:combobox{
 			id = "placement",
 			label = "Layer Position",
 			option = "Above",
 			options = layer_names(),
 			onchange = function() popup.id.option = popup.combobox.active end
+		}]]--
+		popup:combobox{
+			id='placement',
+			label='Layer Location',
+			option='Above',
+			options={'Above','Below'},
+			onchange = function()
+				-- SELECTLOC = option == 'Above'
+				SELECTLOC = popup.data.placement == 'Above'
+				app.alert(SELECTLOC)
+				-- app.alert(popup.data.placement == 'Above' and 'Should be Above' or 'Should be Below')
+			end
 		}
 	end
 
@@ -276,26 +296,86 @@ s
 			-- pt(popup.data)
 		end
 	}		
+	
+	-- Make the action destructive 
+	popup:check{
+		id="cutter",
+		label="Cut Selection",
+		text="Remove selection from current layer.",
+		selected=false,
+		onclick=function()
+			-- CUTCONTENT = CUTCONTENT == false and true or false
+			CUTCONTENT = not CUTCONTENT 
+		end
+	}
+	
+	-- Close the window on go
+	popup:check{
+		id="closeongo",
+		label="Close",
+		text="Close window after 'GO!'",
+		selected=false,
+		onclick=function()
+			-- CUTCONTENT = CUTCONTENT == false and true or false
+			CLOSECHK = not CLOSECHK 
+		end
+	}
 
 	popup:newrow()
-	-- Add Go Button
+	
+	
+	-- Make the magic happen.
 	popup:button{
 		id="go",
 		label="Make Layer",
 		text="GO!",
 		focus=false,
 		onclick=function()
-			-- local sel = spr.selection
-			-- app.command.NewLayer()
-			-- app.command.Paste()
-			-- app.transaction(
-				-- function()
-			app.command.Copy()
-			app.command.NewLayer({viacopy=true})	
+			-- TODO: Try to get this in app.transaction
+			
+			-- Check if the selection should be cut or copied.
+			-- local command = self.cutter.selected and 
+			local command = 
+				CUTCONTENT and
+				app.command.Cut or
+				app.command.Copy
+				
+			-- Perform the action.
+			command()
+			
+			-- Debuggery
+			-- app.alert(CUTCONTENT == app.command.Copy and "Cutting" or "Copying" )
+			-- app.command.NewLayer({viacopy=true})	
+			
+			-- Position of the layer relative to current.
+			pt(popup.data)
+			-- app.command.NewLayer({before=SELECTLOC == popup.data.placement})	
+			app.command.NewLayer({before=not SELECTLOC})	
+			-- Lay it down.
 			app.command.Paste()
+			-- Set the name.
 			app.activeLayer.name = popup.data.newname
-			  -- end
-			-- )
+			
+			
+			-- Close the window if the checkbox is ticked.
+			if CLOSECHK then
+				popup:close()
+			end
+			
+			--[[Make the new layer completely copied.
+				app.command.NewLayer{
+					name = popup.data.newname,
+					group = false,
+					reference = false,
+					ask = false, -- User can enter name here.
+					fromFile = false,
+					fromClipboard = true,
+					viaCut = CUTCONTENT,
+					viaCopy = not CUTCONTENT,
+					top = false,
+					before = SELECTLOC == 'Above'
+				}]]--
+
 		end
 	}
 
@@ -321,4 +401,3 @@ s
 --	==========================================================================
 -- San Dimas High School Football Rules!
 -- HistoryTest()
-
