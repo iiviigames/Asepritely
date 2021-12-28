@@ -6,34 +6,6 @@
 
 
 Beginning in Aseprite `1.2.10`, users were able to begin using Lua to write their own code extensions to assist in their spritely endeavors. I've written _many_ myself, but, they were originally just for my own use. I've seen that maybe one or two were worthy of sharing, so, as I clean up their code, I will add them to this repository for **you, the artist** to consume at their leisure.
-
-
-Usage :orange_book:
-------
-
-To make use of these scripts, first clone the repo or [download the zip](https://github.com/iiviigames/Asepritely/archive/master.zip). Open this folder in an explorer window. Then, *open Aseprite, and peform the following*: <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Open Scripts Folder</kbd>. Another explorer window should open up, and this is where you can **copy any of the scripts you want from the repo into the Aseprite scripts folder**!
-
-Now that they're in the right place, in order to use them, you can either:
-
-
-+ <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Rescan Scripts Folder</kbd> (**Faster, better option!**), _or..._
-+ Restart Aseprite
-
-The scripts will now be accesible by going back to the <kbd>File</kbd> `->` <kbd>Scripts</kbd> dropdown! 
-
-> TIP: **You can even assign them to a keyboard shortcut through Aseprite's built-in keymap definition tool!**
-
-
-### Setting Scripts to Keyboard Shortcuts
-
-This is useful for some scripts, like `Export PNG on Save.lua`, and less useful for others. If you've never bound your scripts to keyboard shortcuts before, here's a quick how to. Open Aseprite and then:
-
-+ Clicking <kbd>Edit</kbd> `->` <kbd>Keyboard Shortcuts</kbd>
-+ In the window that opens, you'll be in the **Menu** section, and just toward the bottom, you'll see any and all scripts you have in your scripts folder listed.
-+ Choose the one you want to assign a keyboard shortcut, and set it as you see fit!
-
-> **EXAMPLE**: For `Export PNG on Save.lua`, _I recommend: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>_
-
 The Scripts :memo:
 ------------
 
@@ -60,11 +32,17 @@ When run, this script simply _saves your current sprite_ and **saves a `.png` co
 
 Aseprite already has a feature called "Save selection to new sprite". I often find that, while working on something, I need to **copy** or **cut** just a portion of a layer into a new one so I can divide things up more easily. 
 
-Well, that's exactly what this does! It's only version `1.0`, so it's _barely_ functional. I plan on adding options to select between copy or paste (_right now, it's just copy_), and the ability to do have this work on all cels in a layer. Right now, it just works _on the current active layer and cel_!. 
+This little beauty has been cleaned right up, and functions _much better than it did_. You can now select whether you want the selected content to be:
+
++ _Cut_ from the target layer.
++ _Copied_ from the target layer.
++ Placed _above_ the target layer.
++ Placed _below_ the target layer.
++ And whether to _close_ the window on execution.
 
 Here's a little clip of it in action.
 
-![Selection to Layer](img/SelectionToLayer.gif)
+![Selection to Layer](img/SelectionToLayer02.gif)
 
 
 Palettes :gift: <a name="Extensions"></a>
@@ -88,6 +66,47 @@ They are the [Secret Pico-8](https://pico-8.fandom.com/wiki/User_blog:Iiviigames
 Here's a little gif showing how to import it into Aseprite!
 
 ![Load Palettes](img/PaletteExtension.gif)
+
+Usage :orange_book:
+------
+
+To make use of these scripts, first clone the repo or [download the zip](https://github.com/iiviigames/Asepritely/archive/master.zip). 
+
+Alternatively, you can [click here](https://github.com/iiviigames/Asepritely/raw/master/extensions/Asepritely.aseprite-extension) to download the `aseprite-extension` format of the scripts and palettes. 
+
+> :notebook: `aseprite-extension`'s are actually just a zip file with a fancier name. :smiley:
+
+
+
+
+Then, *open Aseprite, and peform the following*: 
+
+**Option 1** _(zip)_: <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Open Scripts Folder</kbd>. Another explorer window should open up, and this is where you can **copy any of the scripts you want from the repo into the Aseprite scripts folder**!
+
+**Option 2** _(extension)_: <kbd>Edit</kbd> `->` <kbd>Preferences</kbd> `->` <kbd>Extensions</kbd> and click <kbd>Add Extension</kbd>. Then, locate the `aseprite-extension` file you downloaded and hit _okay_.
+
+Now that they're in the right place, in order to use them, you can either:
+
+
++ <kbd>File</kbd> `->` <kbd>Scripts</kbd> `->` <kbd>Rescan Scripts Folder</kbd> (**Faster, better option!**), _or..._
++ Restart Aseprite
+
+The scripts will now be accesible by going back to the <kbd>File</kbd> `->` <kbd>Scripts</kbd> dropdown! 
+
+> TIP: **You can even assign them to a keyboard shortcut through Aseprite's built-in keymap definition tool!**
+
+
+### Setting Scripts to Keyboard Shortcuts
+
+This is useful for some scripts, like `Export PNG on Save.lua`, and less useful for others. If you've never bound your scripts to keyboard shortcuts before, here's a quick how to. Open Aseprite and then:
+
++ Clicking <kbd>Edit</kbd> `->` <kbd>Keyboard Shortcuts</kbd>
++ In the window that opens, you'll be in the **Menu** section, and just toward the bottom, you'll see any and all scripts you have in your scripts folder listed.
++ Choose the one you want to assign a keyboard shortcut, and set it as you see fit!
+
+> **EXAMPLE**: For `Export PNG on Save.lua`, _I recommend: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>_
+
+
 
 Other Useful Resources :see_no_evil:
 ------------------------
