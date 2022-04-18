@@ -2,7 +2,9 @@
 -- iiviigames
 
 --[[GOALS
-[ ] Create a list that stores data for the user permanently.
+- [x] Check that a file of a certain type exists. This is the templates file.
+- [x] Check the  templates file has an identifier.
+- [ ] Create a list that stores data for the user permanently.
 [ ] This list is called "templates" and will store the width, height, and color
     space of the desired sprite.
 [ ] The list must be stored in a file outside of the program itself.
@@ -10,6 +12,12 @@
 [ ] The user should have the option to use a custom file with a different exten.
 [ ] 
 ]]
+
+
+-- ============================================================================
+-- Requirements
+-- ============================================================================
+require('util')
 
 -- ============================================================================
 -- Globals
@@ -82,7 +90,14 @@ function file_exists(file)
   return f ~= nil
 end
 
-
+---@desc  Ensures the appropriate ID is on the templates first line.
+function check_identifier(file)
+  local f = io.open(file,'r')
+  local v = f:read()
+  print(v)
+  f:close()
+  return v == IDENTIFIER 
+end
 ---@func  read_lines(file, dbg)
 ---@arg   {str} file    location/name of a file that needs to be read
 ---@arg   {bln} [dbg]   debug logging (default: false)
@@ -100,7 +115,7 @@ function read_lines(file, dbg)
   -- Loop through each line in the file.
   for line in io.lines(file) do 
     -- Skip the first line 
-    lines[#lines + 1] = line]
+    lines[#lines + 1] = line
     -- Debug logging
     if dbg then
       print("Location in table: " .. #lines + i)
@@ -109,6 +124,27 @@ function read_lines(file, dbg)
   end
   
   return lines
+end
+
+function file_to_table(file)
+  local t = {}
+  local f  = io.open(file,"r") 
+  
+  local line = f:read()
+
+  -- Keep reading the file while you can.
+  while line  do
+    if line ~= IDENTIFIER then
+      line=line:gsub("%s+", "")
+      push(t, line)
+    end
+    line = f:read()
+  end
+
+  -- Close File.
+  f:close()
+  -- Return the file as a table.
+  return t
 end
 
 
@@ -136,6 +172,7 @@ function custom_file(name, ext, comment, dbg)
     f.write(IDENTIFIER)
     -- Returns an empty table
     return {}
+  end
 end
 -- ============================================================================
 -- Dialog Functionality
@@ -186,5 +223,90 @@ end
 -- Testing
 -- ============================================================================
 
-
-read_lines("")
+function tests(n,...)
+  
+  -- Testing values
+  word = 'deoxyribonucleic'
+  c = subchr(word, 5)
+  syls = {substr(word, 1,2),substr(word, 3, 4),subchr(word,5)}
+  tbl = {'cat', 68, p = function(s) print(s) end, 'hundred nips goken',syls}
+  
+  -- Total # of tests.
+  testcount = 5
+  
+  local a = {...}
+  local l = #a
+  local tsts={n}
+  
+  -- Add to the tests if the arg is a number less than the max # of tests
+  if l > 0 then
+    for i=1, #a do
+      local e = a[i]
+      if type(e) == 'number' then
+        if e > 0 and e <= testcount then
+          push(tsts, e)
+        end
+      end
+    end
+  end
+  
+  
+  -- Test Titles
+  local titles = {
+    "File Existence Check",
+    "Identifier in First Line",
+    "Whole File to Table",
+    "Skip Line 1 , File to Table",
+    "Utility Tests",
+  }
+  
+  -- loop through the test table and perform the requested ones.
+  for i=1, #tsts do
+    local t = tsts[i]
+    -- Identrify the test number
+    print(spad("TEST #"..tostr(t), "left", ' ', 40))
+    print(spad(titles[i], "left", ' ', 40))
+    print(srpt('=',80))
+    if t == 1 then
+      -- File Exists Test
+      print(tostr(file_exists(DEFAULT_FILE)))
+    elseif t == 2 then
+      -- Identifier check test.
+      local r = check_identifier(DEFAULT_FILE)
+      local p = r and "Identifier found!" or "Unable to find proper identifier"
+      print(p)
+    elseif t == 3 then 
+      -- Read Array TEST
+      
+      a = read_array(DEFAULT_FILE)
+      pt(a)
+      print(#a)
+    elseif t == 4 then 
+      -- File to Table
+      a = file_to_table(DEFAULT_FILE)
+      for i=1, #a do
+        print(a[i])
+      end
+    elseif t== 5 then
+      pt(syls)
+      ptp(tbl)
+      z=spad(word, #word/2, '-', #word)
+      print(z)
+    else
+      print('no test')
+    end
+    
+    -- Create a separator for the next test
+    if i == #tsts then
+      print(spad('\n', 'left', ' ', 40))
+      print(spad("TESTS COMPLETE!", 'left', ' ', 40))
+      
+    else
+      -- print(srpt('-',80))
+      print('\n')
+    end
+    
+  end
+end
+  
+tests(1,2,3,4)
