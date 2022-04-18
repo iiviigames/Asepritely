@@ -126,16 +126,31 @@ function read_lines(file, dbg)
   return lines
 end
 
-function file_to_table(file)
+---@desc
+function file_to_table(file, strip)
+  strip = type(strip) == 'boolean' and false or true
+  
   local t = {}
   local f  = io.open(file,"r") 
   
   local line = f:read()
-
+  
   -- Keep reading the file while you can.
   while line  do
     if line ~= IDENTIFIER then
-      line=line:gsub("%s+", "")
+      -- line=line:gsub("%s+", "")
+      -- line=line:gsub("-", "")
+      
+      -- Strip whitespace.
+      if strip then
+        line = trim(line)
+      end
+      -- Strip out '-' chrs.
+      line=stripchr(line, '-')
+      -- Strip out ':'' chrs.
+      line=stripchr(line, ':')
+      
+      -- Add the content into the table
       push(t, line)
     end
     line = f:read()
@@ -148,6 +163,8 @@ function file_to_table(file)
 end
 
 
+
+---@desc  Creates a custom templates file.
 function custom_file(name, ext, comment, dbg)
   -- Custom file flag on.
   USE_CUSTOM_FILE = true
@@ -173,6 +190,45 @@ function custom_file(name, ext, comment, dbg)
     -- Returns an empty table
     return {}
   end
+end
+
+
+function file_to_table2(file, strip)
+  strip = type(strip) == 'boolean' and true or false
+  
+  local t = {}
+  local f  = io.open(file,"r") 
+  
+  local line = f:read()
+  local cnt = -1
+  local current = {}
+  -- Keep reading the file while you can.
+  while line  do
+    
+    if line ~= IDENTIFIER then
+      -- Strip whitespace.
+      line=line:gsub("%s+", "")
+      -- line = stripws(line)
+      -- Strip out '-' chrs.
+      line=line:gsub("-", "")
+      -- line=stripchr(line, '-')
+      
+      -- Add the content into the table
+      push(current, line)
+
+      -- when current has a length of 3, we add it to "t" and make a new table.
+      if #current == 2 then
+        push(t, current)
+        current = {}
+      end
+    end
+    line = f:read()
+  end
+
+  -- Close File.
+  f:close()
+  -- Return the file as a table.
+  return t
 end
 -- ============================================================================
 -- Dialog Functionality
@@ -232,7 +288,7 @@ function tests(n,...)
   tbl = {'cat', 68, p = function(s) print(s) end, 'hundred nips goken',syls}
   
   -- Total # of tests.
-  testcount = 5
+  testcount = 6
   
   local a = {...}
   local l = #a
@@ -257,16 +313,20 @@ function tests(n,...)
     "Identifier in First Line",
     "Whole File to Table",
     "Skip Line 1 , File to Table",
+    "Skip Line 1 , File to Table of Tables",
     "Utility Tests",
   }
   
   -- loop through the test table and perform the requested ones.
   for i=1, #tsts do
+    
     local t = tsts[i]
+    
     -- Identrify the test number
     print(spad("TEST #"..tostr(t), "left", ' ', 40))
     print(spad(titles[i], "left", ' ', 40))
     print(srpt('=',80))
+    
     if t == 1 then
       -- File Exists Test
       print(tostr(file_exists(DEFAULT_FILE)))
@@ -276,8 +336,7 @@ function tests(n,...)
       local p = r and "Identifier found!" or "Unable to find proper identifier"
       print(p)
     elseif t == 3 then 
-      -- Read Array TEST
-      
+      -- Read Array TEST      
       a = read_array(DEFAULT_FILE)
       pt(a)
       print(#a)
@@ -287,7 +346,14 @@ function tests(n,...)
       for i=1, #a do
         print(a[i])
       end
-    elseif t== 5 then
+    elseif t == 5 then 
+      -- File to Table 2
+      a = file_to_table2(DEFAULT_FILE)
+      for i=1, #a do
+        pt(a[i])
+      end
+    elseif t== 6 then
+      -- Utitlity Tests
       pt(syls)
       ptp(tbl)
       z=spad(word, #word/2, '-', #word)
@@ -307,6 +373,7 @@ function tests(n,...)
     end
     
   end
+  
 end
   
-tests(1,2,3,4)
+tests(4)
