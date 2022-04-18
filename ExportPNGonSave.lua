@@ -7,7 +7,9 @@
 --	USAGE:		Executes when the script is run. 
 --	Set it to a keyboard shortcut like CTRL+ALT+SHIFT+S
 --	==========================================================================
-
+if not app.activeSprite then
+	return
+end
 --	GLOBALS
 --	=========================================================================
 

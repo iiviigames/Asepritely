@@ -16,7 +16,9 @@
 				- Implement utility functions for strings.
 				- Check Lines 198 - 205
 --]]
-
+if not app.activeSprite then
+	return
+end
 
 USESLIDER = false
 USEDROPDOWN = true

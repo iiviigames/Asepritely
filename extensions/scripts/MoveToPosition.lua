@@ -1,6 +1,8 @@
 --	HELPER FUNCTIONS
 --	==========================================================================
-
+if not app.activeSprite then
+	return
+end
 --	Prints the contents of a table to the console
 --	Stands for "print table"
 function pt(t)
@@ -22,6 +24,10 @@ function ptr(t)
 	end
 end
 
+-- Exit if there's no active sprite
+if not app.activeSprite then
+	return
+end
 
 local window = Dialog("Enter Offset")
 local size = window.bounds
@@ -90,5 +96,5 @@ window:button{
 
 -- ++++++++++++++++++++
 -- Start Script
-window:show{wait=false}
+window:show{wait=true}
 -- print(app.activeSprite.position)

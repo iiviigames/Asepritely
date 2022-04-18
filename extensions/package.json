@@ -2,7 +2,7 @@
   "name": "Asepritely",
   "displayName": "Asepritely",
   "description": "A Growing Collection of Useful Aseprite Scripts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": { "name": "Vee Flynn | iiviigames | @iiviigames",
               "email": "iiviigames@pm.me",
               "url": "https://odd.codes/" },
@@ -12,7 +12,6 @@
   "categories": [ "Scripts", "Palettes" ],
   "contributes": {
     "scripts": [
-      { "path": "./scripts/init.lua" },
       { "path": "./scripts/ExportPNGonSave.lua" },
       { "path": "./scripts/ForegroundRGBToolbar.lua" },
       { "path": "./scripts/MoveToPosition.lua" },

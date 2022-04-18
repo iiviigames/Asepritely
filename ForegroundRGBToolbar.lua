@@ -8,7 +8,9 @@
 --	USAGE:		Simply press the "GO" button to view the RGB values of your 
 --						foreground color.
 --	==========================================================================
-
+if not app.activeSprite then
+	return
+end
 
 --	GLOBALS
 --	==========================================================================
@@ -24,9 +26,7 @@
 	--	Get the current Sprite being edited in Aseprite
 	local spr = app.activeSprite
 	--	Alert if no active sprite has been found
-	if not spr then
-		return app.alert("Error! No sprite is being edited!")
-	end
+
 	--	Get the current Palette being used in Aseprite
 	local pal = spr.palettes[1]
 
@@ -236,7 +236,15 @@
 
 --	MAIN
 --	==========================================================================
-	
+if not spr then
+	-- return app.alert("Error! No sprite is being edited!")
+	return 
+	--	Shows the Window Toolbar
+	-- tool:show{wait=false}
+
+	--	Performs any dbg calls
+	-- dbg:show('bounds','bad')
+end
 	--	Shows the Window Toolbar
 	tool:show{wait=false}
 
