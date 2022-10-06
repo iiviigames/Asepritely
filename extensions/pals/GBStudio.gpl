@@ -1,0 +1,16 @@
+GIMP Palette
+#
+# Gameboy Studio Palette
+# To Download GBSTUDIO, visit: https://www.gbstudio.dev
+# Made for the 30th Mini Jam:  https://itch.io/jam/mini-jam-30-gameboy
+# INFORMATION
+# ---------------------------------------------------------------------
+# Author:   Vee - iiviigames
+# Twitter:  @iiviigames
+# Website:  https://odd.codes
+# Blog:     https://blog.odd.codes
+#
+224 248 207	GBSHighlight
+134 192 108 GBSLowlight
+ 48 104  80 GBSSoftshade
+  7  24  33 GBSHardshade

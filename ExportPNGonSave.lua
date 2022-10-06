@@ -1,11 +1,12 @@
---	SCRIPT:		Export PNG on Save.lua
---	DATE:			February 06, 2021
---	AUTHOR:		iivii		|		@odd_codes
---	WEBSITE:	https://odd.codes
---	GITHUB:		https://github.com/iiviigames/Asepritely
---	DESC:			Saves a png format image of current ase file on a save command.
---	USAGE:		Executes when the script is run. 
---	Set it to a keyboard shortcut like CTRL+ALT+SHIFT+S
+---PACKAGE:   Asepritely
+---SCRIPT:		Export PNG on Save.lua
+---CREATED:	  February 06, 2021
+---UPDATED:   August 03, 2021
+---AUTHOR:		iivii		|		@iiviigames
+---WEBSITE:	  https://odd.codes
+---DESC:			Saves a png format image of current ase file on a save command.
+---USAGE:	  	Executes when the script is run. 
+---           Set it to a keyboard shortcut like CTRL+ALT+SHIFT+S
 --	==========================================================================
 if not app.activeSprite then
 	return

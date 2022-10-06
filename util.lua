@@ -1,15 +1,20 @@
 tostr = tostring
+ts = tostring
 floor = math.floor
 ceil  = math.ceil
 tonum = tonumber
 --	HELPER FUNCTIONS
 --	==========================================================================
+mypi=3.14159265359
 
-
---	Shows the type of an item
-function st(v)
-  
-	print(type(v))
+-- Gets the type of an item
+function gto(v,noprint)
+  noprint = type(noprint) == 'boolean' and noprint or true
+  if not noprint then
+    print(type(v))
+    
+  end
+  return type(v)
 end
 
 -- Show type recursively for tables.
@@ -174,12 +179,20 @@ function srpt(c,n)
 	return r
 end
 
--- Removes a given substring from a string
+---@func	stripchr(s,c)
+---@arg 	{str}	s		string to process
+---@arg 	{num}	c		substring to remove from string
+---@desc  Removes a given substring from a string
+---@exam  hexonly = stripchr('0xffaa11','0x')
 function stripchr(s,c)
   return s:gsub(c, "")
 end
 
--- Removes some whitespace from a string
+---@func	stripws(s)
+---@arg 	{str}	s		string to remove all whitespace from
+---@desc  Removes some whitespace from a string
+---@exam  clean = stripchr('       cat         sup     ')
+--->>>>>  print(clean) -- catsup 
 function stripws(s)
   return s:gsub("%s*", "")
 end
@@ -201,8 +214,13 @@ function read_array(file)
   handle:close()
   return arr
 end
+-- Alias for read_array
+file_to_table = read_array
 
+
+-- No Operation
 function noop() return end
+
 --	UTILITY FUNCTIONS
 --	==========================================================================
 
@@ -237,8 +255,3 @@ function layer_names()
 	end
 	return names
 end
-
-
-
---	CREATE THE DIALOG
---	==========================================================================

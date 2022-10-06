@@ -1,25 +1,31 @@
 {
   "name": "Asepritely",
   "displayName": "Asepritely",
-  "description": "A Growing Collection of Useful Aseprite Scripts",
-  "version": "0.2.1",
-  "author": { "name": "Vee Flynn | iiviigames | @iiviigames",
-              "email": "iiviigames@pm.me",
-              "url": "https://odd.codes/" },
+  "description": "A Growing Collection of Useful Aseprite Scripts and Palettes",
+  "version": "0.2.5",
+  "author": { 
+    "name": "Vee Flynn | iiviigames | @iiviigames",
+    "email": "iiviigames@pm.me",
+    "url": "https://iivii.itch.io/asepritely"
+  },
   "contributors": [ "iiviigames" ],
   "publisher": "iiviiGames",
-  "license": "CC-BY-4.0",
   "categories": [ "Scripts", "Palettes" ],
   "contributes": {
     "scripts": [
+      { "path": "./scripts/CelsToImages.lua" },
       { "path": "./scripts/ExportPNGonSave.lua" },
       { "path": "./scripts/ForegroundRGBToolbar.lua" },
       { "path": "./scripts/MoveToPosition.lua" },
-      { "path": "./scripts/SelectionToLayer.lua" }
+      { "path": "./scripts/P8Spritesheet.lua" },
+      { "path": "./scripts/SelectionToLayer.lua" },
+      { "path": "./scripts/ShowMouseWheelShortcuts.lua" },
+      { "path": "./scripts/util.lua" }
     ],
     "palettes": [
-      { "id": "Secret Pico",  "path": "./pals/SecretPico.gpl" },
-      { "id": "Flat UI",      "path": "./pals/FlatUI.gpl" }
+      { "id": "Secret Pico",    "path": "./pals/SecretPico.gpl" },
+      { "id": "Flat UI",        "path": "./pals/FlatUI.gpl" },
+      { "id": "Gameboy Studio", "path": "./pals/GBStudio.gpl" }
     ]
   }
 }
