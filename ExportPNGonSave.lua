@@ -69,7 +69,7 @@ end
 function namestrip()
 	local spr = app.activeSprite
 	local path = spr.filename
-	local i1 = findlast(path, '\\') + 1
+	local i1 = findlast(path, '[/\\]') + 1
 	local i2 = findlast(path, '%.') - 1
 	local name = path:sub(i1, i2)
 	return name
@@ -79,7 +79,7 @@ end
 function pathstrip()
 	local spr = app.activeSprite
 	local path = spr.filename
-	local i1 = findlast(path, '\\')
+	local i1 = findlast(path, '[/\\]')
 	local name = path:sub(0, i1)
 	return name
 end
